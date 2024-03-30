@@ -15,6 +15,14 @@ import (
 // when both are ready, will choose either of them at random
 // if none are ready, then it will block, until one of the channels becomes available
 
+// Buffered Channels
+// channels are synchronous by default, so it will block and wait to send and receive
+// By specifying a buffer, it will make the channel asynchronous, so it will no longer block to send or receive
+// To do so, you specify another parameter when making a channel
+
+// var c = make(chan int, 1)
+// The channel above has a capacity of 1, when its full the channel will be blocked. However since there is a buffer now, if there were 2 or more go routines attempting to access the above channel, there will be a deadlock
+
 func main() {
 	var c1 = make(chan string)
 	var c2 = make(chan string)
